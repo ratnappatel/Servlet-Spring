@@ -34,6 +34,12 @@ public class UpdateStudentServlet extends HttpServlet {
 		
 			String name=(String)session.getAttribute("name");
 			out.println("Welcome "+name);
+			
+			out.println("Welcome "+name+"&nbsp;");
+			out.println("<form method='get' action='http://localhost:90/StudentManagementApp/logout'>");
+			out.println("<input type=submit value='Logout'></form>");
+			
+			
 			String parameter=request.getParameter("rollno");
 			int rollno=Integer.parseInt(parameter);
 			Student s=service.getStudent(rollno);

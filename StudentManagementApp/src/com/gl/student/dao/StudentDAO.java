@@ -11,7 +11,7 @@ public class StudentDAO {
 		try 
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/world?","root","Mysql@123");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/world?verifyServerCertificate=false&useSSL=true","root","Mysql@123");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

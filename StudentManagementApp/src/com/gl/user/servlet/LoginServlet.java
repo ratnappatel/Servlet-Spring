@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("name", user.getName());
 			
-			response.sendRedirect("/list");
+			response.sendRedirect("list");
 		}
 		else
 		{

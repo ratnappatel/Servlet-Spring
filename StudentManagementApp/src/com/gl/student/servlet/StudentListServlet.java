@@ -39,7 +39,12 @@ public class StudentListServlet extends HttpServlet {
 		if(session!=null)
 		{
 			String name=(String)session.getAttribute("name");
-			out.println("Welcome "+name+"<br><br>");
+			out.println("Welcome "+name+"&nbsp;");
+			out.println("<form method='get' action='http://localhost:90/StudentManagementApp/logout'>");
+			out.println("<input type=submit value='Logout'></form>");
+			
+			
+			
 			out.println("<input type=submit value='Add New Student'><br><br>");
 			out.println("<table border='5'><tr><th>Roll No</th><th>Student Name</th><th>Student Address</th><th>Mobile No</th><th>Actions</th</tr>");
 			
