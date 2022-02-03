@@ -38,11 +38,11 @@ public class LoginServlet extends HttpServlet {
 		user.setId(Integer.parseInt(uid));
 		user.setPassword(password);
 		
-		user=service.getUser(user);
-		if(user!=null)
+		User u=service.getUser(user);
+		if(u!=null)
 		{
 			HttpSession session=request.getSession(true);
-			session.setAttribute("name", user.getName());
+			session.setAttribute("name", u.getName());
 			
 			response.sendRedirect("list");
 		}

@@ -27,7 +27,7 @@ public class UpdateStudentServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
-		HttpSession session=request.getSession();
+		HttpSession session=request.getSession(false);
 		
 		if(session!=null)
 		{

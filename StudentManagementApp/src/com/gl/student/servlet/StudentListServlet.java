@@ -35,7 +35,8 @@ public class StudentListServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		out.println("<head><title>Student Management Application</title></head>");
-		HttpSession session=request.getSession();
+		HttpSession session=request.getSession(false);
+		System.out.println(session);
 		if(session!=null)
 		{
 			String name=(String)session.getAttribute("name");
@@ -44,8 +45,8 @@ public class StudentListServlet extends HttpServlet {
 			out.println("<input type=submit value='Logout'></form>");
 			
 			
-			
-			out.println("<input type=submit value='Add New Student'><br><br>");
+			out.println("<form method='post' action='http://localhost:90/StudentManagementApp/AddStudent.html'>");
+			out.println("<input type=submit value='Add New Student'><br><br></form>");
 			out.println("<table border='5'><tr><th>Roll No</th><th>Student Name</th><th>Student Address</th><th>Mobile No</th><th>Actions</th</tr>");
 			
 			try 

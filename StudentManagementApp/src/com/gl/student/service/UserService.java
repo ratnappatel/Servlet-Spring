@@ -18,6 +18,7 @@ public class UserService {
 	}
 	public User getUser(User user)
 	{
+		User existing=null;
 		try 
 		{
 			pre=con.prepareStatement("select * from users where id=? and password=?");
@@ -27,14 +28,16 @@ public class UserService {
 			res=pre.executeQuery();
 			if(res!=null)
 			{
+				existing=new User();
 				res.next();
-				user.setName(res.getString("name"));
+				existing.setName(res.getString("name"));
+				existing.setPassword(res.getString("password"));
+				existing.setId(res.getInt("id"));
 			}
-			else
-				return null;			
+						
 			
 		} catch (Exception e) {e.printStackTrace();		}
-		return user;
+		return existing;
 	}
 
 }
