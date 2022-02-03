@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gl.student.service.StudentService;
 
@@ -34,28 +35,39 @@ public class StudentListServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		out.println("<head><title>Student Management Application</title></head>");
-		out.println("<input type=submit value='Add New Student'><br>");
-		out.println("<table border='5'><tr><th>Roll No</th><th>Student Name</th><th>Student Address</th><th>Mobile No</th><th>Actions</th</tr>");
-		
-		try 
+		HttpSession session=request.getSession();
+		if(session!=null)
 		{
-			ResultSet res=service.getAllStudents();
-			while(res.next()) 
+			String name=(String)session.getAttribute("name");
+			out.println("Welcome "+name+"<br><br>");
+			out.println("<input type=submit value='Add New Student'><br><br>");
+			out.println("<table border='5'><tr><th>Roll No</th><th>Student Name</th><th>Student Address</th><th>Mobile No</th><th>Actions</th</tr>");
+			
+			try 
 			{
-				int rollno=res.getInt("rollno");
-				out.println("<tr>");
-				out.println("<td>"+rollno+"</td>");
-				out.println("<td>"+res.getString("name")+"</td>");
-				out.println("<td>"+res.getString("address")+"</td>");
-				out.println("<td>"+res.getString("mobileno")+"</td>");
-				out.println("<td><a href='http://localhost:90/StudentManagementApp/edit?rollno="
-				+rollno+"'>Edit</a>");
-				out.println("<a href='http://localhost:90/StudentManagementApp/delete?rollno="
-				+rollno+"'>Delete</a></td>");
-				out.println("</tr>");
-			}
-			out.println("</table>");
-		} catch (SQLException e) {e.printStackTrace();}	
+				ResultSet res=service.getAllStudents();
+				while(res.next()) 
+				{
+					int rollno=res.getInt("rollno");
+					out.println("<tr>");
+					out.println("<td>"+rollno+"</td>");
+					out.println("<td>"+res.getString("name")+"</td>");
+					out.println("<td>"+res.getString("address")+"</td>");
+					out.println("<td>"+res.getString("mobileno")+"</td>");
+					out.println("<td><a href='http://localhost:90/StudentManagementApp/edit?rollno="
+					+rollno+"'>Edit</a>");
+					out.println("<a href='http://localhost:90/StudentManagementApp/delete?rollno="
+					+rollno+"'>Delete</a></td>");
+					out.println("</tr>");
+				}
+				out.println("</table>");
+			} catch (SQLException e) {e.printStackTrace();}	
+		}
+		else
+		{
+			out.println("<p style='color:red'>You are not logged in Yet.</p>");
+			out.println("To Login <a href='http://localhost:90/StudentManagementApp/index.html'>Go here</a>");
+		}
 		
 	}
 
