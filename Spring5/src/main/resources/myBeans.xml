@@ -9,7 +9,7 @@
 			<constructor-arg name="no" value="10"/>
 			<constructor-arg name="name" value="IT"/>
 		</bean>
-<!--  Employee e1=new Employee(argument) -->
+<!--  Employee e1=new Employee(argument) CONSTRUCTOR BASED DEPENDENCY  -->
 	<bean id="employee" class="org.cap.pojo.Employee" scope="prototype">
 		<constructor-arg name="department" ref="d1"/>
 		<constructor-arg name="employeeId" value="1005"/>
