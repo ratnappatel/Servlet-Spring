@@ -71,6 +71,7 @@ public class ShoppingCardServlet extends HttpServlet {
                     control.insertOrderLine(orderID, pID, quantity, price);
                 }
             } catch (SQLException e) {
+            	e.printStackTrace();
                 System.out.println("SQL Error");
             }
             //destroy session
