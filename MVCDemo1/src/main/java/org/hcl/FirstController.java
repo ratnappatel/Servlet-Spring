@@ -1,4 +1,4 @@
-package com.hcl.MVCDemo1.controller;
+package org.hcl;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FirstController {
-	
+public FirstController() {
+	System.out.println("Controller Instantiated....");
+}
 	@RequestMapping(value="/")
 	public String greet()
 	{
